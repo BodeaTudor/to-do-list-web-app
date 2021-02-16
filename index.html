@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://use.fontawesome.com/e93a8975bd.js"></script>
+</head>
+<body>
+
+<div class="content">
+    <h1>TO DO LIST</h1>
+
+    <h3>Create new item</h3>
+    <form id="new-item-form">
+        <label for="description-field">Description</label>
+        <input type="text" id="description-field" placeholder="So what do you have to do?">
+        <label for="deadline-pick">Deadline</label>
+        <input type="datetime-local" id="deadline-pick">
+        <input type="submit">
+    </form>
+    <table id="to-do-items-table">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Done</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Learn HTML</td>
+            <td>21.07.2020</td>
+            <td><input class="mark-done-checkbox" type="checkbox" title="Done"></td>
+            <td><a href="#" class="delete-item fa fa-trash"></a></td>
+        </tr>
+
+        <tr>
+            <td>Learn CSS</td>
+            <td>21.07.2020</td>
+            <td><input class="mark-done-checkbox" type="checkbox" title="Done"></td>
+            <td><a href="#" class="delete-item fa fa-trash"></a> </td>
+        </tr>
+
+        <tr>
+            <td>Learn JavaScript</td>
+            <td>21.07.2020</td>
+            <td><input class="mark-done-checkbox" type="checkbox" title="Done"></td>
+            <td><a href="#" class="delete-item fas fa fa-trash"></a> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
