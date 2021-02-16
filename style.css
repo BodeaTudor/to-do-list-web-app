@@ -1,0 +1,34 @@
+#to-do-items-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#to-do-items-table td, #to-do-items-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#to-do-items-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#to-do-items-table tr:hover {background-color: #ddd;}
+
+#to-do-items-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#to-do-items-table td {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.fa.fa-trash{
+    color:gray;
+}
