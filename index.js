@@ -48,7 +48,7 @@ window.ToDoList = {
             <td>${item.description}</td>
             <td>${formattedDate}</td>
             <td><input class="mark-done-checkbox" type="checkbox" title="Done" data-id="${item.id}" ${checkedAttribute}></td>
-            <td><a href="#" class="delete-item fa fa-trash"></a></td>
+            <td><a href="#" class="delete-item fa fa-trash" data-id="${item.id}"></a></td>
             </tr>`
     },
 
@@ -65,6 +65,15 @@ window.ToDoList = {
         })
     },
 
+    deleteItem: function (itemId) {
+        $.ajax({
+            url: ToDoList.API_BASE_URL + "?id=" + itemId,
+            method: "DELETE",
+        }).done(function (response) {
+            ToDoList.getItems();
+        })
+    },
+
     bindEvents: function () {
         $("#new-item-form").submit(function (event) {
             event.preventDefault();
@@ -72,13 +81,21 @@ window.ToDoList = {
             ToDoList.createItem();
         });
 
-        $   ("#to-do-items-table").delegate(".mark-done-checkbox", "change", function (event) {
+        $("#to-do-items-table").delegate(".mark-done-checkbox", "change", function (event) {
             event.preventDefault();
 
             var itemId = $(this).data('id');
             var checkboxChecked = $(this).is(':checked');
 
             ToDoList.updateItem(itemId, checkboxChecked);
+        });
+
+        $("#to-do-items-table").delegate(".delete-item", "click", function (event) {
+            event.preventDefault();
+
+            var itemId = $(this).data('id');
+
+            ToDoList.deleteItem(itemId);
         });
     }
 
