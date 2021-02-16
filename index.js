@@ -42,12 +42,27 @@ window.ToDoList = {
     getItemRow: function (item) {
         var formattedDate = new Date(...item.deadline).toLocaleDateString("us-US");
 
+        var checkedAttribute = item.done ? "checked" : "";
+
         return `<tr>
             <td>${item.description}</td>
             <td>${formattedDate}</td>
-            <td><input class="mark-done-checkbox" type="checkbox" title="Done"></td>
+            <td><input class="mark-done-checkbox" type="checkbox" title="Done" data-id="${item.id}" ${checkedAttribute}></td>
             <td><a href="#" class="delete-item fa fa-trash"></a></td>
             </tr>`
+    },
+
+    updateItem: function (itemId, done) {
+        $.ajax({
+            url: ToDoList.API_BASE_URL + "?id=" + itemId,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify({
+                done: done,
+            })
+        }).done(function (response) {
+            ToDoList.getItems();
+        })
     },
 
     bindEvents: function () {
@@ -56,7 +71,17 @@ window.ToDoList = {
 
             ToDoList.createItem();
         });
+
+        $   ("#to-do-items-table").delegate(".mark-done-checkbox", "change", function (event) {
+            event.preventDefault();
+
+            var itemId = $(this).data('id');
+            var checkboxChecked = $(this).is(':checked');
+
+            ToDoList.updateItem(itemId, checkboxChecked);
+        });
     }
+
 };
 
 ToDoList.getItems();
